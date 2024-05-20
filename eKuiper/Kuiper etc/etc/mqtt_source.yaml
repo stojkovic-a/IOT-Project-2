@@ -1,0 +1,4 @@
+default:
+    qos:2
+    server: "mosquitto:1883"
+    

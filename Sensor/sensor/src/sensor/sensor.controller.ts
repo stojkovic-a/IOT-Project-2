@@ -23,9 +23,9 @@ export class SensorController implements OnApplicationBootstrap {
     }
 
 
-    // @MessagePattern('sensor')
-    // sub(@Payload() data: Fields, @Ctx() context: MqttContext) {
-    //     console.log(data.voltage);
+    // @MessagePattern('api:To')
+    // sub(@Payload() data, @Ctx() context: MqttContext) {
+    //     console.log(data);
     // }
    
 

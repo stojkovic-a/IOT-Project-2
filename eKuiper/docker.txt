@@ -1,0 +1,8 @@
+docker run -p 9081:9081 -d --name kuiper --net BRIDGE -v mqtt_source.yaml:/kuiper/etc -e MQTT_SOURCE__DEFAULT__SERVER="mosquitto:1883" lfedge/ekuiper
+
+
+
+docker cp kuiper:/kuiper/etc ./"Kuiper etc"
+copy .\mqtt_source.yaml .\"Kuiper etc"\etc\mqtt_source.yaml
+docker cp ./"Kuiper etc"/etc/ kuiper:/kuiper/
+
