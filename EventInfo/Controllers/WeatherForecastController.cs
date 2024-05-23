@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Analytics.Controllers
+namespace EventInfo.Controllers
 {
     [ApiController]
     [Route("[controller]")]

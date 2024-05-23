@@ -1,0 +1,34 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/event/lastEvents": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Returns last time each event happened from analysis",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/event/latestInfo": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Returns the latest info from analysis",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}

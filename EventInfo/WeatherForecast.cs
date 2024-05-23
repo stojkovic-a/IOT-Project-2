@@ -1,4 +1,4 @@
-namespace Analytics
+namespace EventInfo
 {
     public class WeatherForecast
     {

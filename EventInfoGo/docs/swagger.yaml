@@ -1,0 +1,20 @@
+info:
+  contact: {}
+paths:
+  /event/lastEvents:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Returns last time each event happened from analysis
+  /event/latestInfo:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      summary: Returns the latest info from analysis
+swagger: "2.0"

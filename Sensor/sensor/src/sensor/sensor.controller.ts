@@ -58,23 +58,5 @@ export class SensorController implements OnApplicationBootstrap {
             console.log('Failed to send ',e);
         }
     }
-    // async sensorStream() {
-    //     try {
-    //         const userProperties = { 'x-version': '1.0.0' };
-    //         const subject = new Subject<Fields>();
-    //         await this.sensorService.getAllFieldsSensor(subject);
-    //         await subject.subscribe(async (data) => {
-    //             const record = new MqttRecordBuilder(data)
-    //                 .setProperties({ userProperties })
-    //                 .setQoS(2)
-    //                 .build();
-    //             await this.client.send('sensor', record).subscribe();
 
-    //         })
-    //         return subject.asObservable();
-    //     }
-    //     catch (error) {
-    //         console.error(`Error executing the service`, error)
-    //     }
-    // }
 }

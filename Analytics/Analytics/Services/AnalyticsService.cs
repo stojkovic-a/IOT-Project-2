@@ -47,11 +47,11 @@ namespace Analytics.Services
 
             if (data.GlobalActivePower > this.avgGlobalActivePower * 1.1)
             {
-                tempData["globalActivePower"] = "Warning sudden increase in global active power";
+                tempData["GlobalActivePower"] = "Warning sudden increase in global active power";
             }
             else if (data.GlobalActivePower < this.avgGlobalActivePower * 0.9)
             {
-                tempData["globalActivePower"] = "Warning sudden decrease in global active power";
+                tempData["GlobalActivePower"] = "Warning sudden decrease in global active power";
             }
 
 
@@ -66,65 +66,67 @@ namespace Analytics.Services
 
             if (data.GlobalReactivePower > 0.2 * data.GlobalActivePower)
             {
-                tempData["globalReactivePower"] = "Warning suspicious amount of reactive power detected";
+                tempData["GlobalReactivePower"] = "Warning suspicious amount of reactive power detected";
             }
 
 
             if (data.Voltage > this.avgVoltage * 1.1)
             {
-                tempData["voltage"] = "Warning sudden increase in voltage";
+                tempData["Voltage"] = "Warning sudden increase in voltage";
             }
             else if (data.Voltage < this.avgVoltage * 0.9)
             {
-                tempData["voltage"] = "Warning sudden decrease in voltage";
+                tempData["Voltage"] = "Warning sudden decrease in voltage";
             }
 
 
             if (data.GlobalIntensity > this.avgGlobalIntensity * 1.1)
             {
-                tempData["globalIntensity"] = "Warning sudden increase in global intensity";
+                tempData["GlobalIntensity"] = "Warning sudden increase in global intensity";
             }
             else if (data.GlobalIntensity < this.avgGlobalIntensity * 0.9)
             {
-                tempData["globalIntensity"] = "Warning sudden decrease in global intensity";
+                tempData["GlobalIntensity"] = "Warning sudden decrease in global intensity";
             }
 
 
             if (data.SubMetering_1 > 0)
             {
-                tempData["subMetering_1"] = "Kitchen in use";
+                tempData["SubMetering_1"] = "Kitchen in use";
             }
             else
             {
-                tempData["subMetering_1"] = "Kitchen not in use";
+                tempData["SubMetering_1"] = "Kitchen not in use";
             }
 
             if (data.SubMetering_2 > 0)
             {
-                tempData["subMetering_2"] = "Laundry room in use";
+                tempData["SubMetering_2"] = "Laundry room in use";
             }else
             {
-                tempData["subMetering_2"] = "Laundry room not in use";
+                tempData["SubMetering_2"] = "Laundry room not in use";
             }
 
             if (data.SubMetering_3 > 0)
             {
-                tempData["subMetering_3"] = "Water heater in use";
+                tempData["SubMetering_3"] = "Water heater in use";
             }
             else
             {
-                tempData["subMetering_3"] = "Water heater not in use";
+                tempData["SubMetering_3"] = "Water heater not in use";
             }
         }
         public async void Analysis(Fields? data)
         {
             if (data == null)
                 return;
-
+            
             UpdateAverages(data);
 
             Dictionary<string, string> tempData = new Dictionary<string, string>();
-            tempData["timestamp"] = data.Time.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz", CultureInfo.InvariantCulture);
+            //tempData["timestamp"] = data.Time.ToString("yyyy-MM-ddTHH\\:mm\\:ss.fffffffzzz", CultureInfo.InvariantCulture);
+            tempData["Timestamp"] = data.Time.ToString();
+
             Rules(ref tempData, data);
 
 
@@ -132,7 +134,8 @@ namespace Analytics.Services
             if (string.IsNullOrEmpty(toApiTopic))
                 throw new Exception("Invalid Appsetings entry");
 
-            await this._mqttService.PublishMessageAsync(toApiTopic,JsonConvert.SerializeObject(tempData));
+            Console.WriteLine(JsonConvert.SerializeObject(tempData));
+            await this._mqttService.PublishMessageAsync(toApiTopic, JsonConvert.SerializeObject(tempData));
         }
 
         public async Task ReceiveDataAsync()
