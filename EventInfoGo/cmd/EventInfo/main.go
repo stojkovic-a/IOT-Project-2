@@ -11,8 +11,7 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 
 	swaggerFiles "github.com/swaggo/files"
-
-	docs "github.com/IOT-Project-2/EventInfoGo/docs"
+	docs "EventInfo/docs"
 )
 
 var (
@@ -37,16 +36,15 @@ func init() {
 	}
 	eventController = controllers.New(eventService)
 	server = gin.Default()
-	server.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
-
+	docs.SwaggerInfo.BasePath="/v1"
 }
 
 func main() {
 
 	defer mqttService.DisconnectAsync()
-	
+
 	basePath := server.Group("/v1")
 	eventController.RegisterEventInfoRoutes(basePath)
-
+	server.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	log.Fatal(server.Run(":9998"))
 }

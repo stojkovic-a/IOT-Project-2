@@ -44,6 +44,9 @@ namespace Analytics.Services
         }
         private void Rules(ref Dictionary<string,string> tempData,Fields data)
         {
+            //Console.WriteLine(data.GlobalActivePower);
+            //Console.WriteLine(this.avgGlobalActivePower*1.1);
+            //Console.WriteLine("iznad");
 
             if (data.GlobalActivePower > this.avgGlobalActivePower * 1.1)
             {
@@ -134,7 +137,6 @@ namespace Analytics.Services
             if (string.IsNullOrEmpty(toApiTopic))
                 throw new Exception("Invalid Appsetings entry");
 
-            Console.WriteLine(JsonConvert.SerializeObject(tempData));
             await this._mqttService.PublishMessageAsync(toApiTopic, JsonConvert.SerializeObject(tempData));
         }
 
