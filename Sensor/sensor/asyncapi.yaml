@@ -36,9 +36,7 @@ components:
         fields:
             summary: "Data from sensor"
             payload:
-                properties:
-                    data:
-                        $ref: "#/components/schemas/fields"
+                $ref: "#/components/schemas/fields"
     schemas:
         fields:
             type: object
