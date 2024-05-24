@@ -33,28 +33,27 @@ operations:
             - $ref: "#/components/messages/fields"
 components:
     messages:
-        fields:
-            name: fields
-            summary: "Data from sensor"
-            contentType: application/json
-            payload:
-                properties:
-                    measurement:
-                        type: string
-                    time:
-                        type: string
-                        format: date-time
-                    globalActivePower:
-                        type: number
-                    globalIntensity:
-                        type: number
-                    globalReactivePower:
-                        type: number
-                    subMetering_1:
-                        type: number
-                    subMetering_2:
-                        type: number
-                    subMetering_3:
-                        type: number
-                    voltage:
-                        type: number
+        name: fields
+        summary: "Data from sensor"
+        contentType: application/json
+        payload:
+            properties:
+                measurement:
+                    type: string
+                time:
+                    type: string
+                    format: date-time
+                globalActivePower:
+                    type: number
+                globalIntensity:
+                    type: number
+                globalReactivePower:
+                    type: number
+                subMetering_1:
+                    type: number
+                subMetering_2:
+                    type: number
+                subMetering_3:
+                    type: number
+                voltage:
+                    type: number
