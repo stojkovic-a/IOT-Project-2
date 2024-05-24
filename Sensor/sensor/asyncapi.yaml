@@ -38,27 +38,24 @@ components:
             summary: "Data from sensor"
             contentType: application/json
             payload:
-                $ref: "#/components/schemas/fields"
-    schemas:
-        fields:
-            type: object
-            properties:
-                measurement:
-                    type: string
-                time:
-                    type: string
-                    format: date-time
-                globalActivePower:
-                    type:number
-                globalIntensity:
-                    type: number
-                globalReactivePower:
-                    type: number
-                subMetering_1:
-                    type: number
-                subMetering_2:
-                    type: number
-                subMetering_3:
-                    type: number
-                voltage:
-                    type: number
+                type: object
+                properties:
+                    measurement:
+                        type: string
+                    time:
+                        type: string
+                        format: date-time
+                    globalActivePower:
+                        type: number
+                    globalIntensity:
+                        type: number
+                    globalReactivePower:
+                        type: number
+                    subMetering_1:
+                        type: number
+                    subMetering_2:
+                        type: number
+                    subMetering_3:
+                        type: number
+                    voltage:
+                        type: number
