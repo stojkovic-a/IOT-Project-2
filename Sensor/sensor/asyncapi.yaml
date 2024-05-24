@@ -50,7 +50,7 @@ components:
                     type: string
                     format: date-time
                 globalActivePower:
-                    type:number
+                    type: number
                 globalIntensity:
                     type: number
                 globalReactivePower:
