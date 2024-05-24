@@ -30,8 +30,7 @@ operations:
             $ref: "#/channels/sensor"
         action: send
         messages:
-            -fields:
-                $ref: "#/components/messages/fields"
+            -$ref: "#/components/messages/fields"
 components:
     messages:
         fields:
@@ -39,7 +38,7 @@ components:
             payload:
                 type: object
                 properties:
-                    data:
+                    -data:
                         $ref: "#/components/schemas/fields"
     schemas:
         fields:
