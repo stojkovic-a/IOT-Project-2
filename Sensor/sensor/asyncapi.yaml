@@ -39,9 +39,9 @@ components:
                 type: object
                 properties:
                     data:
-                        $ref: "#/components/schemas/fields"
+                        $ref: "#/components/schemas/fieldsSchema"
     schemas:
-        fields:
+        fieldsSchema:
             type: object
             properties:
                 measurement:
