@@ -34,12 +34,11 @@ operations:
 components:
     messages:
         fields:
+            name: fields
             summary: "Data from sensor"
+            contentType: application/json
             payload:
-                type: object
-                properties:
-                    data:
-                        $ref: "#/components/schemas/fields"
+                $ref: "#/components/schemas/fields"
     schemas:
         fields:
             type: object
