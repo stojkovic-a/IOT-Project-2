@@ -38,7 +38,6 @@ components:
             summary: "Data from sensor"
             contentType: application/json
             payload:
-                type: object
                 properties:
                     measurement:
                         type: string
