@@ -17,7 +17,7 @@ channels:
             fields:
                 $ref: "#/components/messages/fields"
         servers:
-            - $ref:"#/servers/MosquittoInDev"
+            - $ref: "#/servers/MosquittoInDev"
         bindings:
             mqtt:
                 qos:2
@@ -38,7 +38,7 @@ components:
             payload:
                 type: object
                 properties:
-                    -data:
+                    data:
                         $ref: "#/components/schemas/fields"
     schemas:
         fields:
