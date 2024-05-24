@@ -29,8 +29,7 @@ operations:
         channel:
             $ref: "#/channels/sensor"
         action: send
-        messages:
-            - $ref: "#/components/messages/fields"
+
 components:
     messages:
         fields:
