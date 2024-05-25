@@ -1,0 +1,110 @@
+asyncapi: 3.0.0
+id: https://github.com/stojkovic-a/IOT-Project-2/tree/main/Analytics/Analytics
+info:
+    title: Analytics
+    version: 1.0.0
+    description: "Applies analysis rules to the received data and publishes the detected events"
+servers:
+    MosquittoInDev:
+        host: 'localhost:1883'
+        protocol: mqtt
+        description: "Mqtt broker: Mosquitto"
+channels:
+    sensor:
+        address: sensor
+        description: "This channel is used to exchange values from sensor"
+        messages:
+            fields:
+                $ref: "#/components/messages/fields"
+        servers:
+            - $ref: "#/servers/MosquittoInDev"
+        bindings:
+            mqtt:
+                qos: 2
+    api:
+        address: "api:To"
+        description: "This channel is used for exchange of data with api"
+        messages:
+            events:
+                $ref: "#/components/messages/events"
+        servers:
+            - $ref: "#/servers/MosquittoInDev"
+        bindings:
+            mqtt:
+                qos: 2
+operations:
+    receiveFromSensor:
+        title: "Receive From Sensor"
+        summary: "Action when data is received from sensor"
+        channel:
+            $ref: "#/channels/sensor"
+        action: receive
+    sendToApi:
+        title: "Send To Api"
+        summary: "Action when data is sent to api"
+        channel:
+            $ref: "#/channels/api"
+        action: send
+components:
+    schemas:
+        fieldsSchema:
+            type: object
+            properties:
+                measurement:
+                    type: string
+                time:
+                    type: string
+                    format: date-time
+                globalActivePower:
+                    type: number
+                globalIntensity:
+                    type: number
+                globalReactivePower:
+                    type: number
+                subMetering_1:
+                    type: number
+                subMetering_2:
+                    type: number
+                subMetering_3:
+                    type: number
+                voltage:
+                    type: number
+        eventsSchema:
+            type: object
+            properties:
+                globalActivePower:
+                    type: string
+                globalReactivePower:
+                    type: string
+                voltage:
+                    type: string
+                globalIntensity:
+                    type: string
+                subMetering_1:
+                    type: string
+                subMetering_2:
+                    type: string
+                subMetering_3:
+                    type: string
+                timestamp:
+                    type: string
+    messages:
+        fields:
+            summary: "Data from sensor"
+            payload:
+                type: object
+                properties:
+                    data:
+                        $ref: "#/components/schemas/fieldsSchema"
+        events:
+            summary: "Detected events"
+            payload:
+                type: object
+                properties:
+                    data:
+                        $ref: "#/components/schemas/eventsSchema"
+                
+            
+          
+                
+        

@@ -20,7 +20,7 @@ channels:
             - $ref: "#/servers/MosquittoInDev"
         bindings:
             mqtt:
-                qos:2
+                qos: 2
 
 operations:
     onSensorRead:
