@@ -1,0 +1,62 @@
+asyncapi: 3.0.0
+id: https://github.com/stojkovic-a/IOT-Project-2/tree/main/EventInfoGo
+info: 
+  title: EventInfo
+  version: 1.0.0
+  description: "Receives data from Analytics and provides a REST API for accessing that data"
+servers:
+  MosquittoInDev:
+    host: 'localhost:1883'
+    protocol: mqtt
+    description: "Mqtt broker: Mosquitto"
+channels:
+  api:
+    address: "api:To"
+    description: "This channel is used for exchange of data with api"
+    messages:
+      events:
+        $ref: "#/components/messages/events"
+    servers:
+      - $ref: "#/servers/MosquittoInDev"
+    bindings:
+      mqtt:
+        qos: 2
+
+operations:
+  receiveForApi:
+    title: "Receive For Api"
+    summary: "Action when data is received for api"
+    channel:
+      $ref: "#/channels/api"
+    action: receive
+    
+components:
+  schemas:
+    eventsSchema:
+      type: object
+      properties:
+        globalActivePower:
+          type: string
+        globalReactivePower:
+          type: string
+        voltage:
+          type: string
+        globalIntensity:
+          type: string
+        subMetering_1:
+          type: string
+        subMetering_2:
+          type: string
+        subMetering_3:
+          type: string
+        timestamp:
+          type: string
+  messages:
+    events:
+      summary: "Data for api"
+      payload:
+        type: object
+        properties:
+          data:
+            $ref: "#/components/schemas/eventsSchema"
+      
