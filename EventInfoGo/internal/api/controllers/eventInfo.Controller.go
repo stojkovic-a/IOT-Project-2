@@ -16,10 +16,10 @@ func New(eventService services.EventService) EventInfoController {
 	}
 }
 
-//@Summary Returns the latest info from analysis 
-//@Produce json
-//@Success 200
-//@Router /event/latestInfo [get]
+// @Summary Returns the latest info from analysis
+// @Produce json
+// @Success 200
+// @Router /event/latestInfo [get]
 func (e *EventInfoController) GetLatestInfo(ctx *gin.Context) {
 	data, err := e.EventService.GetLatestInfo()
 	if err != nil {
@@ -29,11 +29,10 @@ func (e *EventInfoController) GetLatestInfo(ctx *gin.Context) {
 	ctx.JSON(200, data)
 }
 
-
-//@Summary Returns last time each event happened from analysis 
-//@Produce json
-//@Success 200
-//@Router /event/lastEvents [get]
+// @Summary Returns last time each event happened from analysis
+// @Produce json
+// @Success 200
+// @Router /event/lastEvents [get]
 func (e *EventInfoController) GetLastEvents(ctx *gin.Context) {
 	data, err := e.EventService.GetLastEvents()
 	if err != nil {

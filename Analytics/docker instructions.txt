@@ -1,0 +1,1 @@
+docker container run -d -p 4444:8080 --net BRIDGE --name analytics analytics:1

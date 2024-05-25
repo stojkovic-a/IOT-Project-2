@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb-compose
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: aleksandar10
+      DOCKER_INFLUXDB_INIT_PASSWORD: iotPassword10
+      DOCKER_INFLUXDB_INIT_ORG: Elfak
+      DOCKER_INFLUXDB_INIT_BUCKET: PowerConsumption
+      DOCKER_INFLUXDB_INIT_RETENTION: 0
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb2-data:/var/lib/influxdb2
+      - influxdb2-config:/etc/influxdb2
+    networks:
+      - BRIDGE
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto-compose
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - mosquitto.conf:/mosquitto/config
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+    networks:
+      - BRIDGE
+    depends_on:
+      - influxdb
+
+  sensor:
+    image: sensor:1
+    container_name: sensor-compose
+    environment:
+      INFLUX_URL: "http://influxdb-compose:8086/"
+    networks:
+      - BRIDGE
+    depends_on:
+      - mosquitto
+
+  analytics:
+    image: analytics:1
+    container_name: analytics-compose
+    ports:
+      - "4444:8080"
+    networks:
+      - BRIDGE
+    depends_on:
+      - sensor
+
+  eventinfo:
+    image: eventinfo:1
+    container_name: eventinfo-compose
+    ports:
+      - "9998:9998"
+    networks:
+      - BRIDGE
+    depends_on:
+      - analytics
+
+volumes:
+  influxdb2-data:
+    external: true
+    name: influxdb2-data
+  influxdb2-config:
+    external: true
+    name: influxdb2-config
+  mosquitto-data:
+  mosquitto-log:
+  mosquitto.conf:
+    external: true
+    name: mosquitto.conf
+
+networks:
+  BRIDGE:

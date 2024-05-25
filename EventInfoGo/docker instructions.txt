@@ -1,0 +1,3 @@
+docker run -d -p 9998:9998 --net BRIDGE --name eventinfo eventinfo:1
+
+docker run -d -p 9998:9998 --net BRIDGE --name eventinfo -ti eventinfo:1 sh

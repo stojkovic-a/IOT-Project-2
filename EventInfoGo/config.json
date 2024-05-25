@@ -1,6 +1,6 @@
 {
     "MQTT": {
-        "MQTTServer": "localhost",
+        "MQTTServer": "mosquitto",
         "MQTTPort": 1883,
         "ToApiTopic": "api:To"
     }
